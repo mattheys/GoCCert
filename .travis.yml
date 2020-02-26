@@ -1,4 +1,38 @@
 language: go
 
 go:
-- 1.13.x
+    - 1.13.x
+
+before_install:
+    - go get github.com/mitchellh/gox
+    - go get
+
+install:
+    - gox -osarch=darwin/386
+    - gox -osarch=darwin/amd64
+    - gox -osarch=linux/amd64
+    - gox -osarch=linux/386
+    - gox -osarch=linux/arm
+    - gox -osarch=linux/arm64
+    - gox -osarch=windows/amd64
+    - gox -osarch=windows/386
+
+script:
+    - ls -l|grep qqwry
+
+deploy:
+    provider: releases
+    api_key: "$GH_TOKEN"
+    file:
+        - goccert_darwin_386
+        - goccert_darwin_amd64
+        - goccert_linux_386
+        - goccert_linux_amd64
+        - goccert_linux_arm
+        - goccert_linux_arm64
+        - goccert_windows_386.exe
+        - goccert_windows_amd64.exe
+    skip_cleanup: true
+    on:
+        go: 1.13.x
+        tags: true
