@@ -9,7 +9,7 @@ before_install:
     - go get
 
 install:
-    - gox -ldflags="-X 'main.version=$(git tag)' -X 'main.commit=$(git rev-list -1 HEAD)'"
+    - gox -ldflags="-X 'main.version=$(git tag)' -X 'main.commit=$(git rev-list -1 HEAD)'" -output="goccert-{{.OS}}-{{.Arch}}-$(git tag)"
 
 script:
     - ls -l|grep -i goccert
@@ -19,7 +19,7 @@ deploy:
     api_key: "$GH_TOKEN"
     file_glob: true
     file:
-        - GoCCert_*
+        - goccert_*
     skip_cleanup: true
     on:
         go: 1.13.x
