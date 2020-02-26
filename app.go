@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"fmt"
 
 	"github.com/go-acme/lego/certcrypto"
 	"github.com/go-acme/lego/certificate"
@@ -40,6 +41,8 @@ func (i *arrayFlags) Set(value string) error {
 	return nil
 }
 
+var version, commit string
+
 func init() {
 	email = flag.String("email", "", "Your email address")
 	tos = flag.Bool("tos", false, "Do you agree to Let's Encrypts TOS")
@@ -53,11 +56,13 @@ func init() {
 
 	flag.Parse()
 	if certdomains == nil || *tos == false {
+		fmt.Printf("GoCCert version %s, git commit %s\n\n",version,commit)
 		flag.Usage()
 		log.Fatal("Please supply all params")
 	}
 
 	if *tos == false {
+		fmt.Printf("GoCCert version %s, git commit %s\n\n",version,commit)
 		flag.Usage()
 		log.Fatal("You must agree to the Terms of Service ")
 	}
