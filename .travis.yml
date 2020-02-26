@@ -9,7 +9,7 @@ before_install:
     - go get
 
 install:
-    - gox -ldflags="-X 'main.version=$(git tag)' -X 'main.commit=$(git rev-list -1 HEAD)"
+    - gox -ldflags="-X 'main.version=$(git tag)' -X 'main.commit=$(git rev-list -1 HEAD)'"
 
 script:
     - ls -l|grep -i goccert
