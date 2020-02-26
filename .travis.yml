@@ -16,9 +16,10 @@ script:
 deploy:
     provider: releases
     api_key: "$GH_TOKEN"
+    file_glob: true
     file:
         - GoCCert_*
     skip_cleanup: true
     on:
         go: 1.13.x
-        tags: false
+        tags: true
