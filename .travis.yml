@@ -19,7 +19,7 @@ deploy:
     api_key: "$GH_TOKEN"
     file_glob: true
     file:
-        - goccert_*
+        - goccert-*
     skip_cleanup: true
     on:
         go: 1.13.x
