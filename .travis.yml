@@ -18,7 +18,7 @@ install:
     - gox -osarch=windows/386
 
 script:
-    - ls -l|grep qqwry
+    - ls -l|grep -i goccert
 
 deploy:
     provider: releases
